@@ -16,3 +16,8 @@ def requests_get(url, headers=None, data=None):
     contents["code"] = code
     contents["body"] = body
     return contents
+
+
+"""
+    封装post请求
+"""
