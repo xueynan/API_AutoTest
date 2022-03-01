@@ -19,11 +19,13 @@ def login():
             "password": "12345678"
             }
 # 4.发送post请求
-    result = requests.post(url, json=data)
+#     result = requests.post(url, json=data)
+    result = requests_util.requests_post(url, data=data)
 # 5.输出结果
 #     print(result.json())    # 结果会有两条print后的，以为info()调用的时候会调用login()里的print
 # 6.获取json里的token
-    token = result.json()['token']
+#     token = result.json()['token']
+    token = result["body"]["token"]
     return token
 
 
@@ -78,8 +80,10 @@ def shop():
     headers = {
         'Authorization': 'JWT ' + token
     }
-    result = requests.post(url, json=data, headers=headers)
-    print(result.json())
+    # result = requests.post(url, json=data, headers=headers)
+    # print(result.json())
+    result = requests_util.requests_post(url, data=data, headers=headers)
+    print(result)
 
 
 """
@@ -97,8 +101,10 @@ def order():
     headers = {
         'Authorization': 'JWT ' + token
     }
-    result = requests.post(url, json=data, headers=headers)
-    print(result.json())
+    # result = requests.post(url, json=data, headers=headers)
+    # print(result.json())
+    result = requests_util.requests_post(url, data=data, headers=headers)
+    print(result)
 
 
 if __name__ == "__main__":
