@@ -3,6 +3,7 @@
 """
 # 1.导入包
 import requests
+from utils import requests_util
 
 """
     testcase1：登录成功
@@ -20,7 +21,7 @@ def login():
 # 4.发送post请求
     result = requests.post(url, json=data)
 # 5.输出结果
-    print(result.json())    # 结果会有两条print后的，以为info()调用的时候会调用login()里的print
+#     print(result.json())    # 结果会有两条print后的，以为info()调用的时候会调用login()里的print
 # 6.获取json里的token
     token = result.json()['token']
     return token
@@ -37,8 +38,10 @@ def info():
     headers = {
         'Authorization': 'JWT ' + token
     }
-    result = requests.get(url, headers=headers)
-    print(result.json())
+    result = requests_util.requests_get(url, headers=headers)
+    # result = requests.get(url, headers=headers)
+    # print(result.json())
+    print(result)
 
 
 """
@@ -53,8 +56,10 @@ def product_list():
             "page_size": "1000",
             "ordering": "create_time"
             }
-    result = requests.get(url, json=data)
-    print(result.json())
+    # result = requests.get(url, json=data)
+    # print(result.json())
+    result = requests_util.requests_get(url,data=data)
+    print(result)
 
 
 """
