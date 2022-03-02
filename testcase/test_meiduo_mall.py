@@ -4,6 +4,7 @@
 # 1.导入包
 import requests
 from utils import requests_util
+from utils.requests_util import Request
 
 """
     testcase1：登录成功
@@ -14,13 +15,16 @@ from utils import requests_util
 def login():
     # 3.定义测试数据
     url = "http://211.103.136.242:8064/authorizations/"
+
     data = {
             "username": "python",
             "password": "12345678"
             }
+    method = "post"
 # 4.发送post请求
 #     result = requests.post(url, json=data)
-    result = requests_util.requests_post(url, data=data)
+#     result = requests_util.requests_post(url, data=data)
+    result = Request().requests_api(url=url, method=method, data=data)
 # 5.输出结果
 #     print(result.json())    # 结果会有两条print后的，以为info()调用的时候会调用login()里的print
 # 6.获取json里的token
@@ -40,7 +44,9 @@ def info():
     headers = {
         'Authorization': 'JWT ' + token
     }
-    result = requests_util.requests_get(url, headers=headers)
+    method = "get"
+    result = Request().requests_api(url=url, method=method, headers=headers)
+    # result = requests_util.requests_get(url, headers=headers)
     # result = requests.get(url, headers=headers)
     # print(result.json())
     print(result)
@@ -52,6 +58,7 @@ def info():
 
 
 def product_list():
+    method = 'get'
     url = "http://211.103.136.242:8064/categories/115/skus/"
     data = {
             "page": "1",
@@ -60,7 +67,8 @@ def product_list():
             }
     # result = requests.get(url, json=data)
     # print(result.json())
-    result = requests_util.requests_get(url,data=data)
+    # result = requests_util.requests_get(url,data=data)
+    result = Request().requests_api(url=url, method=method, data=data)
     print(result)
 
 
@@ -80,9 +88,11 @@ def shop():
     headers = {
         'Authorization': 'JWT ' + token
     }
+    method = "post"
     # result = requests.post(url, json=data, headers=headers)
     # print(result.json())
-    result = requests_util.requests_post(url, data=data, headers=headers)
+    # result = requests_util.requests_post(url, data=data, headers=headers)
+    result = Request().requests_api(url=url, method=method, data=data, headers=headers)
     print(result)
 
 
@@ -101,9 +111,11 @@ def order():
     headers = {
         'Authorization': 'JWT ' + token
     }
+    method = "post"
     # result = requests.post(url, json=data, headers=headers)
     # print(result.json())
-    result = requests_util.requests_post(url, data=data, headers=headers)
+    # result = requests_util.requests_post(url, data=data, headers=headers)
+    result = Request().requests_api(url=url, method=method, data=data, headers=headers)
     print(result)
 
 
