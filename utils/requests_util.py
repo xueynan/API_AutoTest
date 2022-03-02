@@ -35,3 +35,26 @@ def requests_post(url, headers=None, data=None):
     contents["code"] = code
     contents["body"] = body
     return contents
+
+
+"""
+    重构
+"""
+
+
+class Request:
+    def requests_api(self, url, method,  headers=None, data=None):
+        if method == "get":
+            result = requests.get(url,  headers=headers, data=data)
+        elif method == "post":
+            result = requests.post(url,  headers=headers, data=data)
+        code = result.status_code
+        try:
+            body = result.json()
+        except Exception as e:
+            body = result.text
+            print(f"{e}不是json")
+        contents = dict()
+        contents["code"] = code
+        contents["body"] = body
+        return contents
