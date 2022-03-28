@@ -4,6 +4,7 @@
 # 1.导入包
 import requests
 from utils import requests_util
+from config.conf import ConfigYaml
 from utils.requests_util import Request
 
 """
@@ -14,7 +15,10 @@ from utils.requests_util import Request
 # 2.定义登录方法
 def login():
     # 3.定义测试数据
-    url = "http://211.103.136.242:8064/authorizations/"
+    # url = "http://211.103.136.242:8064/authorizations/"
+    conf_yaml = ConfigYaml()
+    url_path = conf_yaml.get_conf_url()
+    url = url_path + "authorizations/"
 
     data = {
             "username": "python",

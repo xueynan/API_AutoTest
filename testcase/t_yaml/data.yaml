@@ -1,0 +1,76 @@
+# 1、字典
+---
+name: "testname"
+result: "success"
+
+# 2、列表
+# 比如["a","b","c"]
+---
+- "a"
+- "b"
+- "c"
+
+
+# 3、字典嵌套字典{"person1":{"name":"xi","age":"12"},"person2":{"name":"zhang","age":"23"}
+---
+person1:
+ name: xi
+ age: 12
+person2:
+ name: zhang
+ age: 23
+# 或者
+---
+ person1:
+   name:
+     xi
+   age:
+     12
+ person2:
+   name:
+     zhang
+   age:
+     23
+
+
+# 4、字典嵌套列表{"person1":["name","xi","age","12"],"person2":["name","zhang","age","23"]}
+---
+ person1:
+   - name
+   - xi
+   - age
+   - 12
+ person2:
+   - name
+   - zhang
+   - age
+   - 23
+
+
+# 5、列表嵌套字典["{"person1":"xi"}",{"age":"12"}]
+---
+ - person1:
+     xi
+ - age:
+     12
+
+
+# 6、列表嵌套列表[["person1","xi","zhang"],["age","12","23"]]
+---
+-
+  - person1
+  - xi
+  - zhang
+-
+  - age
+  - 12
+  - 23
+
+
+# 7、读取多个文档
+---
+"用户名称1": "test123"
+"密码": "123456"
+---
+"用户名称2": "test456"
+"密码": "456789"
